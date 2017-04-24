@@ -38,6 +38,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 
 module.exports = emptyFunction;
 },{}],2:[function(require,module,exports){
+(function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -63,7 +64,7 @@ module.exports = emptyFunction;
 
 var validateFormat = function validateFormat(format) {};
 
-if ("production" !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   validateFormat = function validateFormat(format) {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
@@ -93,7 +94,9 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 module.exports = invariant;
-},{}],3:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"_process":4}],3:[function(require,module,exports){
+(function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -117,7 +120,7 @@ var emptyFunction = require('./emptyFunction');
 
 var warning = emptyFunction;
 
-if ("production" !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   (function () {
     var printWarning = function printWarning(format) {
       for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -160,7 +163,8 @@ if ("production" !== 'production') {
 }
 
 module.exports = warning;
-},{"./emptyFunction":1}],4:[function(require,module,exports){
+}).call(this,require('_process'))
+},{"./emptyFunction":1,"_process":4}],4:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -1993,11 +1997,7 @@ var _menuFactory2 = _interopRequireDefault(_menuFactory);
 var styles = {
         pageWrap: function pageWrap(isOpen, width, right) {
             return {
-                MozTransform: isOpen ? '' : right ? 'translate3d(-' + width + 'px, 0, 0)' : 'translate3d(' + width + 'px, 0, 0)',
-                MsTransform: isOpen ? '' : right ? 'translate3d(-' + width + 'px, 0, 0)' : 'translate3d(' + width + 'px, 0, 0)',
-                OTransform: isOpen ? '' : right ? 'translate3d(-' + width + 'px, 0, 0)' : 'translate3d(' + width + 'px, 0, 0)',
-                WebkitTransform: isOpen ? '' : right ? 'translate3d(-' + width + 'px, 0, 0)' : 'translate3d(' + width + 'px, 0, 0)',
-                transform: isOpen ? '' : right ? 'translate3d(-' + width + 'px, 0, 0)' : 'translate3d(' + width + 'px, 0, 0)',
+                'margin-left': isOpen ? '0px' : width + 'px',
                 transition: 'all 0.5s'
             };
         },
