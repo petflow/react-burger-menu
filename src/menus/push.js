@@ -6,7 +6,6 @@ const styles = {
 
   pageWrap(isOpen, width, right) {
     return {
-      'margin-left': isOpen ? '0px' : `${width}px`,
       transition: 'all 0.5s'
     };
   },

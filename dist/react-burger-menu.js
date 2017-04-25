@@ -1996,10 +1996,7 @@ var _menuFactory = require('../menuFactory');
 var _menuFactory2 = _interopRequireDefault(_menuFactory);
 var styles = {
         pageWrap: function pageWrap(isOpen, width, right) {
-            return {
-                'margin-left': isOpen ? '0px' : width + 'px',
-                transition: 'all 0.5s'
-            };
+            return { transition: 'all 0.5s' };
         },
         outerContainer: function outerContainer(isOpen) {
             return { overflow: isOpen ? '' : 'hidden' };
