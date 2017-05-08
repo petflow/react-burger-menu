@@ -119,14 +119,6 @@ export default (styles) => {
       return output;
     }
 
-    listenForClose(e) {
-      e = e || window.event;
-
-      if (this.state.isOpen && (e.key === 'Escape' || e.keyCode === 27)) {
-        this.toggleMenu();
-      }
-    }
-
     componentWillMount() {
       if (!styles) {
         throw new Error('No styles supplied');
@@ -139,8 +131,6 @@ export default (styles) => {
     }
 
     componentDidMount() {
-      window.onkeydown = this.listenForClose.bind(this);
-
       // Allow initial open state to be set by props for animations with wrapper elements.
       if (this.props.isOpen) {
         this.toggleMenu();
@@ -148,8 +138,6 @@ export default (styles) => {
     }
 
     componentWillUnmount() {
-      window.onkeydown = null;
-
       this.clearWrapperStyles();
     }
 

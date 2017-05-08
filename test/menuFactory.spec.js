@@ -83,11 +83,6 @@ describe('menuFactory', () => {
       component = createShallowComponent(<Menu />);
     });
 
-    it('sets global keydown event handler', () => {
-      component = TestUtils.renderIntoDocument(<Menu />);
-      expect(window.onkeydown.name).to.contain('listenForClose');
-    });
-
     it('contains an overlay', () => {
       const overlay = component.props.children[0];
       expect(component.type).to.equal('div');
@@ -132,13 +127,6 @@ describe('menuFactory', () => {
       expect(React.Children.count(component.props.children)).to.equal(2);
     });
 
-    it('closes on Escape key press', () => {
-      component = TestUtils.renderIntoDocument(<Menu />);
-      component.setState({ isOpen: true });
-      window.onkeydown({ key: 'Escape' });
-      expect(component.state.isOpen).to.be.false;
-    });
-
     it('closes on overlay click', () => {
       component = TestUtils.renderIntoDocument(<Menu />);
       component.setState({ isOpen: true });
@@ -156,12 +144,6 @@ describe('menuFactory', () => {
 
     beforeEach(() => {
       component = TestUtils.renderIntoDocument(<Menu />);
-    });
-
-    it('clears global keydown event handler', () => {
-      assert.ok(window.onkeydown);
-      unmountComponent();
-      assert.notOk(window.onkeydown);
     });
 
     it('clears wrapper styles', () => {
@@ -400,23 +382,6 @@ describe('menuFactory', () => {
       expect(html.style['overflow-x']).to.be.empty;
       expect(body.style['overflow-x']).to.be.empty;
       removeWrapperElementsFromDOM();
-    });
-  });
-
-  describe('listenForClose method', () => {
-
-    beforeEach(() => {
-      addWrapperElementsToDOM();
-      component.setState({ isOpen: true });
-    });
-
-    afterEach(() => {
-      removeWrapperElementsFromDOM();
-    });
-
-    it('closes the menu when escape is pressed', () => {
-      component.listenForClose({ key: 'Escape', target: '' });
-      expect(component.state.isOpen).to.be.false;
     });
   });
 
