@@ -139,7 +139,8 @@ export default (styles) => {
     }
 
     componentDidMount() {
-      window.onkeydown = this.listenForClose.bind(this);
+      // not interested in binding escape to close menu functionality
+      // window.onkeydown = this.listenForClose.bind(this);
 
       // Allow initial open state to be set by props for animations with wrapper elements.
       if (this.props.isOpen) {
